@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
@@ -17,6 +15,7 @@ return new class extends Migration
             $table->string("title");
             $table->integer('stock');
             $table->string('desc');
+            $table->float('price');
             $table->timestamps();
         });
     }
