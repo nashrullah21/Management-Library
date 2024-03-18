@@ -19,7 +19,7 @@
                 <br />
                 <br />
 
-                <form method="post" action="/add/product">
+                <form method="POST" action="/add/product" enctype="multipart/form-data">
 
                     {{ csrf_field() }}
 
@@ -32,19 +32,15 @@
                                 {{ $errors->first('title') }}
                             </div>
                         @endif
-
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="image">Image:</label>
+                        <input type="file" name="image" id="image"
+                            class="form-control @error('image') is-invalid @enderror">
 
-                    <div class="form-group">
-                        <label>image</label>
-                        <textarea name="image" class="form-control" placeholder="image product .."></textarea>
-
-                        @if ($errors->has('image'))
-                            <div class="text-danger">
-                                {{ $errors->first('image') }}
-                            </div>
-                        @endif
-
+                        @error('image')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="form-group">

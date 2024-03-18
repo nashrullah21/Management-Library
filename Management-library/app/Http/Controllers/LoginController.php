@@ -24,13 +24,13 @@ class LoginController extends Controller
         ];
         if (Auth::attempt($data)) {
         } else {
-            Session::flash('error', 'Email atau Password Salah');
+            redirect('/login');
         }
-        return redirect('/home');
+        return redirect('/');
     }
     public function actionLogout()
     {
         Auth::logout();
-        return redirect('/');
+        return redirect('/login');
     }
 }

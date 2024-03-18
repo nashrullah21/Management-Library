@@ -27,17 +27,16 @@
                         </button>
                         <a class="navbar-brand" href="{{ route('home') }}">Management Books</a>
                     </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                     aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
-                                    {{ Auth::user()->email }} <span class="caret"></span>
+                                    {{-- {{ Auth::user()->email }} <span class="caret"></span> --}}
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="{{ route('register') }}"><i class="fa fa-power-off"></i> LogOut</a>
+                                    <li><a href="{{ route('logout') }}"><i class="fa fa-power-off"></i> LogOut</a>
                                     </li>
                                 </ul>
                             </li>
@@ -45,7 +44,49 @@
                     </div>
                 </div>
             </nav>
+            <div class="container">
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <a href="/addProduct" class="btn btn-primary">Product</a>
+                        <br />
+                        <br />
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>title</th>
+                                    <th>image</th>
+                                    <th>stock</th>
+                                    <th>price</th>
+                                    <th>desc</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{-- @if (!empty($product)) --}}
+                                @foreach ($products as $p)
+                                    <tr>
+                                        <td>{{ $p->title }}</td>
+                                        <td><img src="{{ 'images/' . $p->image }}" alt="{{ $p->title }}"></td>
+                                        </td>
+                                        <td>{{ $p->stock }}</td>
+                                        <td>{{ $p->price }}</td>
+                                        <td>{{ $p->desc }}</td>
+                                        <td>
+                                            <a href="/product/edit/{{ $p->id }}" class="btn btn-warning">Edit</a>
+                                            <a href="/product/delete/{{ $p->id }}"
+                                                class="btn btn-danger">delete</a>
+                                            <a href="/detail-product/{{ $p->id }}"
+                                                class="btn btn-success">buy</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                {{-- @endif --}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
             @yield('konten')
+
         </div>
     </div>
     </div>
